@@ -1,4 +1,4 @@
-# Kirby Images v1.0 <a href="https://www.paypal.me/medienbaecker"><img width="99" src="http://www.medienbaecker.com/beer.png" alt="Buy me a beer" align="right"></a>
+# Kirby Images <a href="https://www.paypal.me/medienbaecker"><img width="99" src="http://www.medienbaecker.com/beer.png" alt="Buy me a beer" align="right"></a>
 
 The `images` field can be used to edit groups of images very easily by drag-and-drop. Simply take an image from the sidebar and drop it on the field. You can also reorder images inside the field, not linked to the regular order.
 
@@ -8,7 +8,7 @@ Put the `kirby-images` folder into your `site/plugins` folder and rename it to `
 
 ## Example
 
-![Preview](https://user-images.githubusercontent.com/7975568/29171289-51a60240-7ddc-11e7-819b-a6ccea9677d6.gif)
+![Preview](https://user-images.githubusercontent.com/7975568/29196119-b3e25e44-7e32-11e7-906c-2fc4643c844f.gif)
 
 ```yaml
 slideshow:

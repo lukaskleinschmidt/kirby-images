@@ -1,5 +1,7 @@
 <?php
 
+require_once(__DIR__.DS.'helper.php');
+
 class imagesField extends BaseField {
 	static public $fieldname = 'images';
 	static public $assets = array(
@@ -37,12 +39,13 @@ class imagesField extends BaseField {
   
   public function headline() {
     
+    
     $select = '<div class="images-dropdown">';
     if ($this->page()->hasImages()) {
-      $select .= '<span class="no-more-images">' . 'Diese Seite hat keine weiteren Bilder' . '</span>';
+      $select .= '<span class="no-more-images">' . translation('noMoreImages') . '</span>';
     }
     else {
-      $select .= '<span class="no-more-images">' . 'Diese Seite hat keine Bilder' . '</span>';
+      $select .= '<span class="no-more-images">' . translation('noImages') . '</span>';
     }
     foreach ($this->page()->images() as $image) {
       $disabled = "";
