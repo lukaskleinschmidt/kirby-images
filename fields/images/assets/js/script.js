@@ -16,12 +16,24 @@
 			}
 			
 			function reset() {
+			  
 			  if (field.find(".images-item.selected").length) {
 			    field.find(".imagesgrid").addClass("filled");
 			  }
 			  else {
 			    field.find(".imagesgrid").removeClass("filled");
 			  }
+			  
+			  field.find(".images-dropdown").removeClass("open");
+			  field.find(".images-add-button").removeClass("open");
+			  			  
+			  if (field.find('.images-dropdown a').not(".disabled").length > 0) {
+			    field.find('.images-dropdown .no-more-images').removeClass("da");
+			  }
+			  else {
+			    field.find('.images-dropdown .no-more-images').addClass("da");
+			  }
+			  
 			};
 			
 			reset();
@@ -46,15 +58,15 @@
 			function select(filename) {
 			  var file = field.find(".images-item[data-image='" + filename + "']");
 			  file.insertBefore(field.find(".add")).addClass("selected");
+			  field.find(".images-dropdown a[data-filename='" + filename + "']").addClass("disabled");
 			  reset();
-			  field.find(".images-add-button select option[data-filename='" + filename + "']").attr("disabled", "disabled");
 			  write();
 			  noover();
 			};
 			
 			function remove(filename) {
 			  field.find(".images-item[data-image='" + filename + "']").removeClass("selected");
-			  field.find(".images-add-button select option[data-filename='" + filename + "']").removeAttr("disabled");
+			  field.find(".images-dropdown a[data-filename='" + filename + "']").removeClass("disabled");
 			  reset();
 			  noover();
 			  write();
@@ -68,9 +80,23 @@
 			  return false;
 			});
 			
-			field.find(".images-add-button select").on("change", function(e) {
-		    select($(this).find("option:selected").text());
-		    $(this).val($(this).find("option:first").val());
+			field.find(".images-add-button").on("click", function(e) {
+			  event.stopPropagation();
+			  field.find(".images-dropdown").toggleClass("open");
+			  field.find(".images-add-button").toggleClass("open");
+			  $(document).click(function(e) {
+		      if ($(e.target).closest('.images-dropdown').length === 0) {
+		        console.log($(e.target).closest('.images-dropdown').length);
+		        field.find(".images-dropdown").removeClass("open");
+		        field.find(".images-add-button").removeClass("open");
+		      }
+			  });
+			});
+			
+			field.find(".images-dropdown a").on("click", function(e) {
+		    select($(this).find(".image").text());
+		    field.find(".images-dropdown").removeClass("open");
+		    field.find(".images-add-button").removeClass("open");
 			});
 						
 			var files    = field.find('.imagesgrid');

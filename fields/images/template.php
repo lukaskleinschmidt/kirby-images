@@ -26,7 +26,9 @@
 <div class="imagesgrid" data-api="<?php __($page->url('files')) ?>">
 
   <div class="empty">
-    <?php _l('fields.structure.empty') ?>
+    <strong class="no-images">Keine Bilder hinzugefügt.</strong>
+    <span class="dragdrop-help">Bilder können per Drag-and-Drop hinzugefügt werden.</span>
+    <img class="tutorial" src="<?= url('assets/plugins/images/images/images.gif') ?>" />
   </div>
     
   <div class="imagesgrid-inner sortable">
