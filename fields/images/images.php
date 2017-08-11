@@ -41,6 +41,10 @@ class imagesField extends BaseField {
     
     
     $select = '<div class="images-dropdown">';
+    $select .= '<div class="filter-wrap">';
+    $select .= '<i class="icon fa fa-search"></i>';
+    $select .= '<input type="text" class="filter" placeholder="' . translation('search') . '"/>';
+    $select .= '</div>';
     if ($this->page()->hasImages()) {
       $select .= '<span class="no-more-images">' . translation('noMoreImages') . '</span>';
     }
@@ -58,7 +62,7 @@ class imagesField extends BaseField {
     $select .= "</div>";
     
     $add = new Brick('div');
-    $add->html('<i class="icon icon-left fa fa-plus-circle"></i>' . l('fields.structure.add'));
+    $add->html('<i class="icon icon-left fa fa-plus-circle"></i>' . translation('select'));
     $add->addClass('images-add-button label-option');
   
     if(!$this->label) {

@@ -10,6 +10,26 @@
 				field.data( fieldname, true );
 			}
 			
+			
+			field.find("input.filter").on('input', function() {
+			
+	      filter = $(this).val();
+	
+	      if(filter != "") {
+	        $.expr[':'].Contains = function(a, i, m) {
+	         return $(a).text().toUpperCase()
+	                           .indexOf(m[3].toUpperCase()) >= 0;
+	        };	        
+	        field.find(".images-dropdown a").addClass("filtered");
+	        field.find(".images-dropdown a .image:Contains('" + filter + "')").not("disabled").closest("a").removeClass("filtered");
+	      }
+	      else {
+	        field.find(".images-dropdown a").removeClass("filtered");
+	      }
+		
+	    });
+			
+			
 			function noover() {
 			  field.find(".add").removeClass("over");
 			  field.find(".images-item").removeClass("over");
@@ -80,13 +100,14 @@
 			  return false;
 			});
 			
-			field.find(".images-add-button").on("click", function(e) {
+			field.find(".images-add-button").on("click change", function(e) {
 			  event.stopPropagation();
 			  field.find(".images-dropdown").toggleClass("open");
 			  field.find(".images-add-button").toggleClass("open");
+			  field.find("input.filter").focus();
 			  $(document).click(function(e) {
 		      if ($(e.target).closest('.images-dropdown').length === 0) {
-		        console.log($(e.target).closest('.images-dropdown').length);
+		        field.find("input.filter").blur();
 		        field.find(".images-dropdown").removeClass("open");
 		        field.find(".images-add-button").removeClass("open");
 		      }
@@ -94,6 +115,7 @@
 			});
 			
 			field.find(".images-dropdown a").on("click", function(e) {
+			  field.find("input.filter").val("");
 		    select($(this).find(".image").text());
 		    field.find(".images-dropdown").removeClass("open");
 		    field.find(".images-add-button").removeClass("open");

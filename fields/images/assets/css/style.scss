@@ -30,9 +30,32 @@
     }
     
     
+    .filter-wrap {
+      position: relative;
+      .icon {
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #777;
+      }
+    }
+    
+    input.filter {
+      box-sizing: border-box;
+      border: none;
+      border-bottom: 1px solid #efefef;
+      width: 100%;
+      padding: 1em;
+      padding-left: 55px;
+      &:focus {
+        outline: none;
+      }
+    }
+    
     a {
       display: block;
-      padding: .5em;
+      padding: .5em 1em .5em .5em;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -46,7 +69,7 @@
         color: #777;
         cursor: pointer;
       }
-      &.disabled {
+      &.disabled, &.filtered {
         display: none;
       }
       
