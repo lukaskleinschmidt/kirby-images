@@ -16,7 +16,7 @@
     position: absolute;
     right: 0;
     margin-top: 8px;
-    max-width: 280px;
+    width: 280px;
     max-height: 400px;
     overflow-y: auto;
     z-index: 200;
@@ -69,6 +69,10 @@
         color: #777;
         cursor: pointer;
       }
+      &.focused {
+        background-color: #efefef;
+      }
+      
       &.disabled, &.filtered {
         display: none;
       }
@@ -79,9 +83,13 @@
         vertical-align: middle;
         margin-right: .5em;
       }
+      
+      span.image {
+        vertical-align: middle;
+      }
     }
     
-    span.no-more-images {
+    span.no-more-images, span.no-images-found {
       padding: 0 1em;
       white-space: nowrap;
       overflow: hidden;

@@ -6,7 +6,8 @@ return [
         'nothingAdded'  => 'No images selected',
         'help'          => 'Select an image or use drag and drop',
         'select'        => 'Select image',
-        'search'        => 'Search image...'
+        'search'        => 'Filter images...',
+        'noImagesFound' => 'No images found'
     ],
     'de' => [
         'noImages'      => 'Diese Seite hat keine Bilder',
@@ -14,6 +15,7 @@ return [
         'nothingAdded'  => 'Keine Bilder ausgewählt',
         'help'          => 'Bild auswählen oder via Drag &amp; Drop ablegen',
         'select'        => 'Bild auswählen',
-        'search'        => 'Bild suchen...'
+        'search'        => 'Bilder filtern...',
+        'noImagesFound' => 'Keine Bilder gefunden'
     ]
 ];

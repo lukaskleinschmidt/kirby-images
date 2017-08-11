@@ -11,22 +11,55 @@
 			}
 			
 			
-			field.find("input.filter").on('input', function() {
-			
+			field.find("input.filter").on('input change', function() {
 	      filter = $(this).val();
-	
+	      field.find(".images-dropdown .no-images-found").removeClass("da");
 	      if(filter != "") {
+	        
 	        $.expr[':'].Contains = function(a, i, m) {
 	         return $(a).text().toUpperCase()
 	                           .indexOf(m[3].toUpperCase()) >= 0;
 	        };	        
 	        field.find(".images-dropdown a").addClass("filtered");
+	        	        
 	        field.find(".images-dropdown a .image:Contains('" + filter + "')").not("disabled").closest("a").removeClass("filtered");
+	        	        	        	        
+	        if (field.find(".images-dropdown a").not(".filtered").length === 0) {
+	          field.find(".images-dropdown .no-images-found").addClass("da");
+	        }
 	      }
 	      else {
 	        field.find(".images-dropdown a").removeClass("filtered");
 	      }
-		
+	    });
+	    
+	    field.find("input.filter").keydown(function(e){
+	        // UP
+	        if (e.keyCode == 38) {
+	          if (field.find(".images-dropdown a.focused").length) {
+	            field.find(".images-dropdown a.focused").removeClass("focused").prevAll("a").not(".filtered").not(".disabled").first().addClass("focused");
+	          }
+	          else {
+	            field.find(".images-dropdown a").removeClass("focused");
+	            field.find(".images-dropdown a").not(".filtered").not(".disabled").last().addClass("focused");
+	          }
+	        }    
+	        // DOWN
+	        if (e.keyCode == 40) {
+	          if (field.find(".images-dropdown a.focused").length) {
+	            field.find(".images-dropdown a.focused").removeClass("focused").nextAll("a").not(".filtered").not(".disabled").first().addClass("focused");
+	          }
+	          else {
+	            field.find(".images-dropdown a").removeClass("focused");
+	            field.find(".images-dropdown a").not(".filtered").not(".disabled").first().addClass("focused");
+	          }
+	        }
+	        // ENTER
+	        if (e.keyCode == 13) {
+	          field.find(".images-dropdown a.focused").click();
+	          field.find(".images-dropdown a").removeClass("focused");
+	          return false;
+	        }
 	    });
 			
 			
@@ -100,13 +133,15 @@
 			  return false;
 			});
 			
-			field.find(".images-add-button").on("click change", function(e) {
+			field.find(".images-add-button").on("click", function(e) {
 			  event.stopPropagation();
 			  field.find(".images-dropdown").toggleClass("open");
 			  field.find(".images-add-button").toggleClass("open");
 			  field.find("input.filter").focus();
 			  $(document).click(function(e) {
 		      if ($(e.target).closest('.images-dropdown').length === 0) {
+		        field.find("input.filter").val("");
+		        field.find("input.filter").trigger("change");
 		        field.find("input.filter").blur();
 		        field.find(".images-dropdown").removeClass("open");
 		        field.find(".images-add-button").removeClass("open");
@@ -116,6 +151,7 @@
 			
 			field.find(".images-dropdown a").on("click", function(e) {
 			  field.find("input.filter").val("");
+			  field.find("input.filter").trigger("change");
 		    select($(this).find(".image").text());
 		    field.find(".images-dropdown").removeClass("open");
 		    field.find(".images-add-button").removeClass("open");

@@ -41,15 +41,16 @@ class imagesField extends BaseField {
     
     
     $select = '<div class="images-dropdown">';
-    $select .= '<div class="filter-wrap">';
-    $select .= '<i class="icon fa fa-search"></i>';
-    $select .= '<input type="text" class="filter" placeholder="' . translation('search') . '"/>';
-    $select .= '</div>';
     if ($this->page()->hasImages()) {
+      $select .= '<div class="filter-wrap">';
+      $select .= '<i class="icon fa fa-search"></i>';
+      $select .= '<input type="text" class="filter" placeholder="' . translation('search') . '"/>';
+      $select .= '</div>';
+      $select .= '<span class="no-images-found">' . translation('noImagesFound') . '</span>';
       $select .= '<span class="no-more-images">' . translation('noMoreImages') . '</span>';
     }
     else {
-      $select .= '<span class="no-more-images">' . translation('noImages') . '</span>';
+      $select .= '<span class="no-more-images no-images">' . translation('noImages') . '</span>';
     }
     foreach ($this->page()->images() as $image) {
       $disabled = "";
