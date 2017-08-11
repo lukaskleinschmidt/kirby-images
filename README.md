@@ -8,7 +8,7 @@ Put the `kirby-images` folder into your `site/plugins` folder and rename it to `
 
 ## Example
 
-![Preview](https://user-images.githubusercontent.com/7975568/29196119-b3e25e44-7e32-11e7-906c-2fc4643c844f.gif)
+![Preview](https://user-images.githubusercontent.com/7975568/29234770-9f686324-7ef9-11e7-8c37-f53e2848c846.gif)
 
 ```yaml
 slideshow:
