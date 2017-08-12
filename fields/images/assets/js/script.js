@@ -182,7 +182,7 @@
 			    if ($('.sidebar').has(elem).length) {
 			      return true;
 			    }
-			    else if (!$(this).has(elem).length && elem.hasClass("grid-item")) {
+			    else if (!$(this).has(elem).length && elem.hasClass("images-item")) {
 			      return true
 			    }
 	      },
@@ -190,9 +190,9 @@
 			    field.find(".add").removeClass("over");
 			    field.find(".images-item").removeClass("over");
 			    var droppedImage = ui.draggable.data('helper');
-			    if (ui.draggable.hasClass("grid-item")) {
-			      otherField = ui.draggable.closest(".field-with-images");
-			      otherField.find(".images-add-button select option[data-filename='" + droppedImage + "']").removeAttr("disabled");
+			    if (ui.draggable.hasClass("images-item")) {
+			      otherField = ui.draggable.closest(".field-with-images");			      
+			      otherField.find(".images-dropdown a[data-filename='" + droppedImage + "']").removeClass("disabled");
 			      if (otherField.find(".selected").length <= 2) {
 		          otherField.find(".imagesgrid").removeClass("filled");
 		        }
